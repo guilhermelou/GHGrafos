@@ -39,7 +39,7 @@ GHGrafo::GHGrafo(QString path, GHGrafo::GRAFOTYPE type, QObject *parent)
                 if( !line.isEmpty() ){
                     if( i==0 ){
                         //qDebug() << "grafo type:  " << line;
-                        grafotype = line.toInt();
+                        grafotype = (GHGrafo::GRAFOTYPE)line.toInt();
                         /*if( line.toInt()==0 )
                         {
                             grafotype = ORIENTED;
