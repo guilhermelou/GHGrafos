@@ -39,14 +39,15 @@ GHGrafo::GHGrafo(QString path, GHGrafo::GRAFOTYPE type, QObject *parent)
                 if( !line.isEmpty() ){
                     if( i==0 ){
                         //qDebug() << "grafo type:  " << line;
-                        if( line.toInt()==0 )
+                        grafotype = line.toInt();
+                        /*if( line.toInt()==0 )
                         {
                             grafotype = ORIENTED;
                         }
                         else
                         {
                             grafotype = NOT_ORIENTED;
-                        }
+                        }*/
                     }
                     else if( i==1 )
                     {
