@@ -23,7 +23,8 @@ GHGrafo::GHGrafo(QString path, GHGrafo::GRAFOTYPE type, QObject *parent)
         if( path==NULL )
             return;
 
-        else{
+        else
+        {
             QFile file(path);
             if( !file.open(QIODevice::ReadOnly) )
             {
@@ -36,8 +37,10 @@ GHGrafo::GHGrafo(QString path, GHGrafo::GRAFOTYPE type, QObject *parent)
                 QString line = stream.readLine();
                 filecontent.append(line);
                 filecontent.append('\n');
-                if( !line.isEmpty() ){
-                    if( i==0 ){
+                if( !line.isEmpty() )
+                {
+                    if( i==0 )
+                    {
                         //qDebug() << "grafo type:  " << line;
                         grafotype = (GHGrafo::GRAFOTYPE)line.toInt();
                         /*if( line.toInt()==0 )
