@@ -43,14 +43,6 @@ GHGrafo::GHGrafo(QString path, GHGrafo::GRAFOTYPE type, QObject *parent)
                     {
                         //qDebug() << "grafo type:  " << line;
                         grafotype = (GHGrafo::GRAFOTYPE)line.toInt();
-                        /*if( line.toInt()==0 )
-                        {
-                            grafotype = ORIENTED;
-                        }
-                        else
-                        {
-                            grafotype = NOT_ORIENTED;
-                        }*/
                     }
                     else if( i==1 )
                     {
@@ -286,7 +278,7 @@ QString GHGrafo::printAdjacentList()
     switch(grafotype){//if
     case GHGrafo::NOT_ORIENTED:
         foreach (GHNode* node, *GHNodelist) {
-
+            straux.append("|"+node->getName()+"|-> ");
             foreach (GHNode*nodeL,GHNode::getAdjacentNodes(node)) {
                 straux.append(nodeL->getName());
                 straux.append(" -> ");
@@ -297,7 +289,7 @@ QString GHGrafo::printAdjacentList()
     break;
     case GHGrafo::ORIENTED:
         foreach (GHNode* node, *GHNodelist) {
-
+            straux.append("|"+node->getName()+"|-> ");
             foreach (GHNode*nodeL,GHNode::getAdjacentOrientedNodes(node)) {
                 straux.append(nodeL->getName());
                 straux.append(" -> ");
