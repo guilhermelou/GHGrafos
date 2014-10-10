@@ -107,6 +107,7 @@ public slots:
 
 private:
     //QImage *currentImage, *defaultImage;
+    
     GHNode::SELECTION selection;
     GHNode::NODETYPE nodetype;
     GHNode::COLOR nodecolor;
