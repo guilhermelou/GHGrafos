@@ -577,104 +577,131 @@ void GHGrafo::checkAdjacentsConectivity(QList<GHNode*> *conectedNodes, GHNode* n
 
 void GHGrafo::initializes(GHNode *node)
 {
-    foreach( GHNode *current, *GHNodelist ){
+    foreach( GHNode *current, *GHNodelist )
+    {
         current->setDistance(9999);
         current->setParent(NULL);
     }
     node->setDistance(0);
 }
 
-void GHGrafo::relax(GHNode *u, GHNode *v, GHEdge *edge){
-    if( v->getDistance()>u->getDistance()+edge->getWeight() ){
+void GHGrafo::relax(GHNode *u, GHNode *v, GHEdge *edge)
+{
+    if( edge==NULL )
+    {
+        return;
+    }
+    else if( v->getDistance()>u->getDistance()+edge->getWeight() )
+    {
         v->setDistance(u->getDistance()+edge->getWeight());
         v->setParent(u);
     }
 }
 
-QString GHGrafo::bellmanford(GHNode *s){
+QString GHGrafo::bellmanford(GHNode *s)
+{
     initializes(s);
 
     int numbernodes = GHNodelist->count();
-    for( int i=0; numbernodes>i; i++ ){
-        foreach( GHEdge *edge, getAllArrows() ){
+    for( int i=0; numbernodes>i; i++ )
+    {
+        foreach( GHEdge *edge, getAllArrows() )
+        {
             relax(edge->getStartNode(),edge->getEndNode(),edge);
         }
     }
 
-    foreach( GHEdge *edge, getAllArrows() ){
+    foreach( GHEdge *edge, getAllArrows() )
+    {
         GHNode *u = edge->getStartNode();
         GHNode *v = edge->getEndNode();
-        if( v->getDistance()>u->getDistance()+edge->getWeight() ){
+        if( v->getDistance()>u->getDistance()+edge->getWeight() )
+        {
             return "falso";
         }
     }
 
     //PARA VERIFICACAO DA RESPOSTA SE ESTA CERTO OU NAO
     //A RESPOSTA ESTA NA VARIAVEL nos nós pai do GHNodelist
-//    foreach( GHNode *node, *GHNodelist ){
-//        if( node->getParent()==NULL ){
-//            qDebug() << node->getName() << ": NULL";
-//        }
-//        else{
-//            qDebug() << node->getName() << ": " << node->getParent()->getName();
-//        }
-//    }
+    QString straux;
+    foreach( GHNode *node, *GHNodelist )
+    {
+        if( node->getParent()==NULL )
+        {
+            straux.append(node->getName() + ": NULL");
+            straux.append('\n');
+        }
+        else
+        {
+            straux.append(node->getName() +": " + node->getParent()->getName());
+            straux.append('\n');
+        }
+    }
 
-    return "verdadeiro";
+    return "verdadeiro: \n" + straux;
 }
 
-QString GHGrafo::dijsktra(GHNode *node){
+QString GHGrafo::dijsktra(GHNode *node)
+{
     initializes(node);
 
     QList<GHNode*> solution;
-    QList<GHNode*> temporarynode = *GHNodelist;
+    QList<GHNode*> *temporarynode = new QList<GHNode*>(*GHNodelist);
 
-    while( !temporarynode.isEmpty() ){
+    while( !temporarynode->isEmpty() )
+    {
         //---------------------------------------------
-        GHNode *u = temporarynode.first();
+        GHNode *u = temporarynode->first();
         int distance = u->getDistance();
-        for(int i=1;i<temporarynode.count();i++)
+        for(int i=1;i<temporarynode->count();i++)
         {
-            if (temporarynode.at(i)->getDistance()<distance)
+            if (temporarynode->at(i)->getDistance()<distance)
             {
-                u = temporarynode.at(i);
+                u = temporarynode->at(i);
                 distance = u->getDistance();
             }
         }
-        temporarynode.removeAll(u);
+        temporarynode->removeAll(u);
         //---------------------------------------------
         solution.append(u);
 
-        foreach( GHNode *v, GHNode::getAdjacentNodes(u) ){
+        foreach( GHNode *v, GHNode::getAdjacentNodes(u) )
+        {
             relax(u,v,findEdgeWith(u,v));
         }
     }
 
     //PARA VERIFICACAO DA RESPOSTA SE ESTA CERTO OU NAO
     //A RESPOSTA ESTA NO VARIAVEL solution
-//    qDebug() << "foreach: " << solution.count();
     QString straux;
-    foreach( GHNode *node, solution ){
-        if( node->getParent()==NULL ){
+    foreach( GHNode *node, solution )
+    {
+        if( node->getParent()==NULL )
+        {
             straux.append(node->getName() + ": NULL");
             straux.append('\n');
         }
-        else{
+        else
+        {
             straux.append(node->getName() +": " + node->getParent()->getName());
             straux.append('\n');
         }
     }
     return straux;
-
 }
 
 GHEdge *GHGrafo::findEdgeWith(GHNode *u, GHNode *v)
 {
     if (u==NULL || v==NULL)
+    {
         return NULL;
-    foreach( GHEdge *edge, *u->getArrowList() ){
+    }
+    foreach( GHEdge *edge, *u->getArrowList() )
+    {
         if( (edge->getStartNode()==u && edge->getEndNode()==v))
+        {
             return edge;
+        }
     }
     return NULL;
 }
