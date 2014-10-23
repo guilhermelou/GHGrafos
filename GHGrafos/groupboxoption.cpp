@@ -69,6 +69,11 @@ void GroupBoxOption::on_btngeneratetranposed_clicked()
     emit btngeneratetransposed_clicked();
 }
 
+void GroupBoxOption::on_btnbarrier_clicked()
+{
+    emit btnbarrier();
+}
+
 QString GroupBoxOption::getCbxStartNodeContent()
 {
     return ui->cbxstartnode->currentText();
@@ -86,5 +91,7 @@ void GroupBoxOption::setNameNodes(QStringList aux)
     ui->cbxstartnode->clear();
     ui->cbxstartnode->addItems(aux);
 }
+
+
 
 
