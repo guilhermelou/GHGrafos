@@ -42,7 +42,11 @@ private slots:
 
     void on_btngeneratetranposed_clicked();
 
+    void on_btnbarrier_clicked();
+
 signals:
+    void btnbarrier();
+
     void btndeepsearch_clicked();
 
     void btnbreadhsearch_clicked();
