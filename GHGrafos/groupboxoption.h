@@ -38,10 +38,16 @@ private slots:
 
 
 
+    void on_btndeepsearchcolor_clicked();
+
+    void on_btngeneratetranposed_clicked();
+
 signals:
     void btndeepsearch_clicked();
 
     void btnbreadhsearch_clicked();
+
+    void btndeepsearchcolor_clicked();
 
     void btnconectivity_clicked();
 
@@ -53,9 +59,12 @@ signals:
 
     void btnbellmanford_clicked();
 
+    void btngeneratetransposed_clicked();
+
     void cbxstartnode_currentIndexChanged(const QString &arg1);
 
     void cbxfinalnode_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::GroupBoxOption *ui;
 };

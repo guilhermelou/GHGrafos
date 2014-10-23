@@ -83,9 +83,24 @@ GHGrafo::GHGrafo(QString path, GHGrafo::GRAFOTYPE type, QObject *parent)
         }
 }
 
+void GHGrafo::setGrafoType(GHGrafo::GRAFOTYPE grafotype)
+{
+    this->grafotype = grafotype;
+}
+
+GHGrafo::GRAFOTYPE GHGrafo::getGrafoType()
+{
+    return grafotype;
+}
+
 QList<GHNode *> *GHGrafo::getGHNodeList()
 {
     return GHNodelist;
+}
+
+void GHGrafo::setGHNodeList(QList<GHNode *> *GHNodelist)
+{
+    this->GHNodelist = GHNodelist;
 }
 QList<GHNode*> GHGrafo::getListNodeSelected(GHNode::SELECTION selection)
 {    
@@ -277,6 +292,7 @@ QString GHGrafo::printAdjacentList()
     QString straux;
     switch(grafotype){//if
     case GHGrafo::NOT_ORIENTED:
+
         foreach (GHNode* node, *GHNodelist) {
             straux.append("|"+node->getName()+"|-> ");
             foreach (GHNode*nodeL,GHNode::getAdjacentNodes(node)) {
@@ -288,6 +304,7 @@ QString GHGrafo::printAdjacentList()
         }
     break;
     case GHGrafo::ORIENTED:
+        qDebug()<<"oriented";
         foreach (GHNode* node, *GHNodelist) {
             straux.append("|"+node->getName()+"|-> ");
             foreach (GHNode*nodeL,GHNode::getAdjacentOrientedNodes(node)) {
@@ -690,6 +707,98 @@ QString GHGrafo::dijsktra(GHNode *node)
     return straux;
 }
 
+// FOR DEFAULT, 0 mean that the node has no color
+
+QString GHGrafo::deepSearchColor()
+{
+    QList<GHNode*> *temporarynode = new QList<GHNode*>(*GHNodelist);
+
+    // initialize
+    foreach( GHNode *node, *temporarynode )
+    {
+        node->setColorIndex(0);
+    }
+
+    nodesColor(temporarynode->first());
+
+    //PARA VERIFICACAO DA RESPOSTA SE ESTA CERTO OU NAO
+    //A RESPOSTA ESTA NO VARIAVEL temporarynode
+    QString straux = "";
+    int amountColor = 0;
+    foreach( GHNode *node, *temporarynode )
+    {
+        qDebug() << node->getName() + ": " + QString::number(node->getColorIndex()) + "\n";
+
+        straux.append("node de nome " + node->getName() + " de cor " + QString::number(node->getColorIndex()));
+        straux.append("\n");
+
+        if( node->getColorIndex()>amountColor )
+        {
+            amountColor = node->getColorIndex();
+        }
+    }
+
+    straux.append("Quantidade de cores: " + QString::number(amountColor));
+
+    return straux;
+}
+
+void GHGrafo::nodesColor(GHNode *node)
+{
+    if( node->getColorIndex()==0 )
+    {
+        int color = searchForColor(node,1);
+        node->setColorIndex(color);
+
+        foreach( GHNode *sidenode, node->getAdjacentNodes(node) )
+        {
+            nodesColor(sidenode);
+        }
+    }
+}
+
+int GHGrafo::searchForColor(GHNode *node, int color)
+{
+    bool hasChange = true;
+    int i=0;
+
+    while(hasChange)
+    {
+        int size = node->getAdjacentNodes(node).size();
+        for(; i<size; i++ )
+        {
+            GHNode *sidenode = node->getAdjacentNodes(node).at(i);
+            if( color != sidenode->getColorIndex() )
+            {
+                hasChange = false;
+            }
+            else
+            {
+                hasChange = true;
+                ++color;
+                i = 0;
+            }
+        }
+    }
+    return color;
+}
+
+GHGrafo * GHGrafo::generateTranposedGraph()
+{
+    GHGrafo *ghgrafocopy = new GHGrafo();
+    ghgrafocopy->setGrafoType(GHGrafo::ORIENTED);
+    ghgrafocopy->setGHNodeList(new QList<GHNode*>(*GHNodelist));
+
+    QList<GHEdge*> list = ghgrafocopy->getAllArrows();
+    foreach( GHEdge *edge, list )
+    {
+        GHNode *nodeaux = edge->getStartNode();
+        edge->setStartNode(edge->getEndNode());
+        edge->setEndNode(nodeaux);
+    }
+    return ghgrafocopy;
+}
+
 GHEdge *GHGrafo::findEdgeWith(GHNode *u, GHNode *v)
 {
     if (u==NULL || v==NULL)
@@ -730,4 +839,15 @@ QStringList GHGrafo::getVertexNames()
     }
     return list;
 }
+
+QList<GHEdge *> GHGrafo::getAllEdgeTimes()
+{
+    QList<GHEdge *> arrowlist ;
+    foreach(GHNode*node, *GHNodelist )
+    {
+       arrowlist.append(* node->getArrowList());
+    }
+    qDebug()<<"sizeeeee"<<arrowlist.size();
+}
+
 

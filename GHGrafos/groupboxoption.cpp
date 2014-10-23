@@ -16,15 +16,16 @@ GroupBoxOption::~GroupBoxOption()
 void GroupBoxOption::on_btndeepsearch_clicked()
 {
     emit btndeepsearch_clicked();
+}
 
+void GroupBoxOption::on_btndeepsearchcolor_clicked()
+{
+    emit btndeepsearchcolor_clicked();
 }
 
 void GroupBoxOption::on_btnbreadhsearch_clicked()
 {
-
-        emit btnbreadhsearch_clicked();
-
-
+    emit btnbreadhsearch_clicked();
 }
 
 void GroupBoxOption::on_btnconectivity_clicked()
@@ -51,20 +52,21 @@ void GroupBoxOption::on_btndjkstra_clicked()
 void GroupBoxOption::on_btnbellmanford_clicked()
 {
     emit  btnbellmanford_clicked();
-
-
 }
 
 void GroupBoxOption::on_cbxstartnode_currentIndexChanged(const QString &arg1)
 {
     emit cbxstartnode_currentIndexChanged(arg1);
-
-
 }
 
 void GroupBoxOption::on_cbxfinalnode_currentIndexChanged(const QString &arg1)
 {
     emit cbxfinalnode_currentIndexChanged(arg1);
+}
+
+void GroupBoxOption::on_btngeneratetranposed_clicked()
+{
+    emit btngeneratetransposed_clicked();
 }
 
 QString GroupBoxOption::getCbxStartNodeContent()
@@ -76,6 +78,7 @@ QString GroupBoxOption::getCbxFinalNodeContent()
 {
     return ui->cbxfinalnode->currentText();
 }
+
 void GroupBoxOption::setNameNodes(QStringList aux)
 {
     ui->cbxfinalnode->clear();
@@ -83,3 +86,5 @@ void GroupBoxOption::setNameNodes(QStringList aux)
     ui->cbxstartnode->clear();
     ui->cbxstartnode->addItems(aux);
 }
+
+

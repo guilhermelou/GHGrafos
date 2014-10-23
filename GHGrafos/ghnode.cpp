@@ -200,6 +200,17 @@ void GHNode::setColor(GHNode::COLOR color)
 {
     nodecolor = color;
 }
+
+void GHNode::setColorIndex(int colorindex)
+{
+    this->colorindex = colorindex;
+}
+
+int GHNode::getColorIndex()
+{
+    return colorindex;
+}
+
 QPoint GHNode::getCenterTop()
 {
 //    int x = (getX() + (getCurrentImage()->width()/2));
@@ -384,9 +395,12 @@ QList<GHNode*> GHNode::getAdjacentNodes(GHNode *node)
 QList<GHNode*> GHNode::getAdjacentOrientedNodes(GHNode *node)
 {
     QList<GHNode*> listaux;
-    foreach (GHEdge *edge,*(node->getArrowList())) {
+    foreach (GHEdge *edge,*(node->getArrowList()))
+    {
+        //qDebug() << "pq? " << edge->getStartNode()->getName() << " " << edge->getEndNode()->getName();
         if(edge->getStartNode()==node)
         {
+            //qDebug() << "!";
             listaux.append(edge->getEndNode());
         }
     }

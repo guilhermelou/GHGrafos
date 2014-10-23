@@ -151,3 +151,7 @@ void GHEdge::calculateArrow(GHEdge *arrow, QPoint *points)
     points[1] = leftpoint;
     points[2] = midpoint;
 }
+
+
+
+

@@ -18,7 +18,11 @@ public:
     explicit GHGrafo(GHGrafo::GRAFOTYPE type, QObject *parent = 0);
     explicit GHGrafo(QString path,GHGrafo::GRAFOTYPE type, QObject *parent = 0);
 
+    void setGrafoType(GHGrafo::GRAFOTYPE grafotype);
+    GHGrafo::GRAFOTYPE getGrafoType();
+
     QList<GHNode*> * getGHNodeList();
+    void setGHNodeList( QList<GHNode*> *GHNodelist);
     int getIndexOfNodeSelected(GHNode::SELECTION selection, int from=0);
     QList<GHNode *> getListNodeSelected(GHNode::SELECTION selection);
     int isInsideOfNode(QPoint point);
@@ -50,14 +54,23 @@ public:
     GHNode *extractMin(QList<GHNode *> *list);
     void initializes(GHNode *node);
     void relax(GHNode *u, GHNode *v, GHEdge *edge);
+
     QString bellmanford(GHNode *s);
     QString dijsktra(GHNode *node);
+
+    QString deepSearchColor();
+    void nodesColor(GHNode *node);
+    int searchForColor(GHNode *node, int color);
+
+    GHGrafo *generateTranposedGraph();
+
     GHEdge *findEdgeWith(GHNode *u, GHNode *v);
     GHEdge *findPrimEdgeWith(GHNode *u, GHNode *v);
 
     QString getFileContent();
 
     QStringList getVertexNames();
+    QList<GHEdge*> getAllEdgeTimes();
 signals:
     
 public slots:

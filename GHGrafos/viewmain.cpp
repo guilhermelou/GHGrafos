@@ -44,12 +44,14 @@ void ViewMain::createTabWidget()
     //resultwidget;
     //tabwidget->addTab()
     connect(grboption,SIGNAL(btndeepsearch_clicked()),this,SLOT(deepsearch()));
-    connect(grboption,SIGNAL(btnbreadhsearch_clicked()),this,SLOT(breadhsearch()));
+    connect(grboption,SIGNAL(btndeepsearchcolor_clicked()),this,SLOT(deepsearchcolor()));
+    connect(grboption,SIGNAL(btnbreadhsearch_clicked()),this,SLOT(breadhsearch()));  
     connect(grboption,SIGNAL(btnconectivity_clicked()),this,SLOT(conectivity()));
     connect(grboption,SIGNAL(btnkruskal_clicked()),this,SLOT(kruskal()));
     connect(grboption,SIGNAL(btnprim_clicked()),this,SLOT(prim()));
     connect(grboption,SIGNAL(btndjkstra_clicked()),this,SLOT(djkstra()));
     connect(grboption,SIGNAL(btnbellmanford_clicked()),this,SLOT(bellmanford()));
+    connect(grboption,SIGNAL(btngeneratetransposed_clicked()),this,SLOT(generateTransposed()));
 }
 
 //QTableWidget *ViewMain::getTableWidget2()
@@ -77,6 +79,14 @@ void ViewMain::ViewMain::deepsearch()
                                                grboption->getCbxStartNodeContent())));
     tabwidget->setCurrentIndex(3);
 }
+
+void ViewMain::deepsearchcolor()
+{
+    lblresult->setText(ghgrafo->deepSearchColor());
+
+    tabwidget->setCurrentIndex(3);
+}
+
 void ViewMain::ViewMain::breadhsearch()
 {
     lblresult->setText(ghgrafo->breadthSearch(ghgrafo->findByName(
@@ -113,6 +123,14 @@ void ViewMain::ViewMain::bellmanford()
 {
     lblresult->setText(ghgrafo->bellmanford(ghgrafo->findByName(
                                                grboption->getCbxStartNodeContent())));
+    tabwidget->setCurrentIndex(3);
+}
+
+void ViewMain::generateTransposed()
+{
+    GHGrafo *ghgrafoauxiliar = ghgrafo->generateTranposedGraph();
+    lblresult->setText(ghgrafoauxiliar->printAdjacentList());
+
     tabwidget->setCurrentIndex(3);
 }
 

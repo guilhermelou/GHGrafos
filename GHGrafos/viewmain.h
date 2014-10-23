@@ -40,7 +40,10 @@ public:
    // QTableWidget *getTableWidget2();
 public slots:
     void openNewFile();
+
     void deepsearch();
+
+    void deepsearchcolor();
 
     void breadhsearch();
 
@@ -53,6 +56,8 @@ public slots:
     void djkstra();
 
     void bellmanford();
+
+    void generateTransposed();
 
     void startNodeChanged(const QString &arg1);
 

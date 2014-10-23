@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_ViewMain_t {
-    QByteArrayData data[20];
-    char stringdata[205];
+    QByteArrayData data[22];
+    char stringdata[240];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -40,21 +40,24 @@ QT_MOC_LITERAL(7, 63, 6),
 QT_MOC_LITERAL(8, 70, 13),
 QT_MOC_LITERAL(9, 84, 11),
 QT_MOC_LITERAL(10, 96, 10),
-QT_MOC_LITERAL(11, 107, 12),
-QT_MOC_LITERAL(12, 120, 11),
-QT_MOC_LITERAL(13, 132, 4),
-QT_MOC_LITERAL(14, 137, 7),
-QT_MOC_LITERAL(15, 145, 7),
-QT_MOC_LITERAL(16, 153, 11),
-QT_MOC_LITERAL(17, 165, 16),
-QT_MOC_LITERAL(18, 182, 4),
-QT_MOC_LITERAL(19, 187, 16)
+QT_MOC_LITERAL(11, 107, 15),
+QT_MOC_LITERAL(12, 123, 12),
+QT_MOC_LITERAL(13, 136, 11),
+QT_MOC_LITERAL(14, 148, 4),
+QT_MOC_LITERAL(15, 153, 7),
+QT_MOC_LITERAL(16, 161, 7),
+QT_MOC_LITERAL(17, 169, 11),
+QT_MOC_LITERAL(18, 181, 18),
+QT_MOC_LITERAL(19, 200, 16),
+QT_MOC_LITERAL(20, 217, 4),
+QT_MOC_LITERAL(21, 222, 16)
     },
     "ViewMain\0mouseMove\0\0QMouseEvent*\0event\0"
     "mousePress\0mouseRelease\0resize\0"
     "QResizeEvent*\0openNewFile\0deepsearch\0"
-    "breadhsearch\0conectivity\0prim\0kruskal\0"
-    "djkstra\0bellmanford\0startNodeChanged\0"
+    "deepsearchcolor\0breadhsearch\0conectivity\0"
+    "prim\0kruskal\0djkstra\0bellmanford\0"
+    "generateTransposed\0startNodeChanged\0"
     "arg1\0finalNodeChanged\0"
 };
 #undef QT_MOC_LITERAL
@@ -65,7 +68,7 @@ static const uint qt_meta_data_ViewMain[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-      14,   14, // methods
+      16,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -73,22 +76,24 @@ static const uint qt_meta_data_ViewMain[] = {
        4,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    1,   84,    2, 0x05,
-       5,    1,   87,    2, 0x05,
-       6,    1,   90,    2, 0x05,
-       7,    1,   93,    2, 0x05,
+       1,    1,   94,    2, 0x05,
+       5,    1,   97,    2, 0x05,
+       6,    1,  100,    2, 0x05,
+       7,    1,  103,    2, 0x05,
 
  // slots: name, argc, parameters, tag, flags
-       9,    0,   96,    2, 0x0a,
-      10,    0,   97,    2, 0x0a,
-      11,    0,   98,    2, 0x0a,
-      12,    0,   99,    2, 0x0a,
-      13,    0,  100,    2, 0x0a,
-      14,    0,  101,    2, 0x0a,
-      15,    0,  102,    2, 0x0a,
-      16,    0,  103,    2, 0x0a,
-      17,    1,  104,    2, 0x0a,
-      19,    1,  107,    2, 0x0a,
+       9,    0,  106,    2, 0x0a,
+      10,    0,  107,    2, 0x0a,
+      11,    0,  108,    2, 0x0a,
+      12,    0,  109,    2, 0x0a,
+      13,    0,  110,    2, 0x0a,
+      14,    0,  111,    2, 0x0a,
+      15,    0,  112,    2, 0x0a,
+      16,    0,  113,    2, 0x0a,
+      17,    0,  114,    2, 0x0a,
+      18,    0,  115,    2, 0x0a,
+      19,    1,  116,    2, 0x0a,
+      21,    1,  119,    2, 0x0a,
 
  // signals: parameters
     QMetaType::Void, 0x80000000 | 3,    4,
@@ -105,8 +110,10 @@ static const uint qt_meta_data_ViewMain[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, QMetaType::QString,   18,
-    QMetaType::Void, QMetaType::QString,   18,
+    QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::QString,   20,
+    QMetaType::Void, QMetaType::QString,   20,
 
        0        // eod
 };
@@ -122,14 +129,16 @@ void ViewMain::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, vo
         case 3: _t->resize((*reinterpret_cast< QResizeEvent*(*)>(_a[1]))); break;
         case 4: _t->openNewFile(); break;
         case 5: _t->deepsearch(); break;
-        case 6: _t->breadhsearch(); break;
-        case 7: _t->conectivity(); break;
-        case 8: _t->prim(); break;
-        case 9: _t->kruskal(); break;
-        case 10: _t->djkstra(); break;
-        case 11: _t->bellmanford(); break;
-        case 12: _t->startNodeChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
-        case 13: _t->finalNodeChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 6: _t->deepsearchcolor(); break;
+        case 7: _t->breadhsearch(); break;
+        case 8: _t->conectivity(); break;
+        case 9: _t->prim(); break;
+        case 10: _t->kruskal(); break;
+        case 11: _t->djkstra(); break;
+        case 12: _t->bellmanford(); break;
+        case 13: _t->generateTransposed(); break;
+        case 14: _t->startNodeChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
+        case 15: _t->finalNodeChanged((*reinterpret_cast< const QString(*)>(_a[1]))); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -187,13 +196,13 @@ int ViewMain::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 14)
+        if (_id < 16)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 14;
+        _id -= 16;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 14)
+        if (_id < 16)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 14;
+        _id -= 16;
     }
     return _id;
 }

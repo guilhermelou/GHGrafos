@@ -27,8 +27,11 @@ QT_BEGIN_NAMESPACE
 class Ui_GroupBoxOption
 {
 public:
-    QWidget *widget;
+    QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_4;
+    QPushButton *btngeneratetranposed;
+    QPushButton *btndeepsearchcolor;
     QHBoxLayout *horizontalLayout;
     QPushButton *btndeepsearch;
     QPushButton *btnbreadhsearch;
@@ -48,26 +51,41 @@ public:
     {
         if (GroupBoxOption->objectName().isEmpty())
             GroupBoxOption->setObjectName(QStringLiteral("GroupBoxOption"));
-        GroupBoxOption->resize(400, 300);
-        widget = new QWidget(GroupBoxOption);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(12, 20, 326, 89));
-        verticalLayout = new QVBoxLayout(widget);
+        GroupBoxOption->resize(645, 362);
+        layoutWidget = new QWidget(GroupBoxOption);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(2, 20, 641, 120));
+        verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_4 = new QHBoxLayout();
+        horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
+        btngeneratetranposed = new QPushButton(layoutWidget);
+        btngeneratetranposed->setObjectName(QStringLiteral("btngeneratetranposed"));
+
+        horizontalLayout_4->addWidget(btngeneratetranposed);
+
+        btndeepsearchcolor = new QPushButton(layoutWidget);
+        btndeepsearchcolor->setObjectName(QStringLiteral("btndeepsearchcolor"));
+
+        horizontalLayout_4->addWidget(btndeepsearchcolor);
+
+
+        verticalLayout->addLayout(horizontalLayout_4);
+
         horizontalLayout = new QHBoxLayout();
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        btndeepsearch = new QPushButton(widget);
+        btndeepsearch = new QPushButton(layoutWidget);
         btndeepsearch->setObjectName(QStringLiteral("btndeepsearch"));
 
         horizontalLayout->addWidget(btndeepsearch);
 
-        btnbreadhsearch = new QPushButton(widget);
+        btnbreadhsearch = new QPushButton(layoutWidget);
         btnbreadhsearch->setObjectName(QStringLiteral("btnbreadhsearch"));
 
         horizontalLayout->addWidget(btnbreadhsearch);
 
-        btnconectivity = new QPushButton(widget);
+        btnconectivity = new QPushButton(layoutWidget);
         btnconectivity->setObjectName(QStringLiteral("btnconectivity"));
 
         horizontalLayout->addWidget(btnconectivity);
@@ -77,17 +95,17 @@ public:
 
         horizontalLayout_2 = new QHBoxLayout();
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        btnprim = new QPushButton(widget);
+        btnprim = new QPushButton(layoutWidget);
         btnprim->setObjectName(QStringLiteral("btnprim"));
 
         horizontalLayout_2->addWidget(btnprim);
 
-        btnkruskal = new QPushButton(widget);
+        btnkruskal = new QPushButton(layoutWidget);
         btnkruskal->setObjectName(QStringLiteral("btnkruskal"));
 
         horizontalLayout_2->addWidget(btnkruskal);
 
-        btndjkstra = new QPushButton(widget);
+        btndjkstra = new QPushButton(layoutWidget);
         btndjkstra->setObjectName(QStringLiteral("btndjkstra"));
 
         horizontalLayout_2->addWidget(btndjkstra);
@@ -97,27 +115,27 @@ public:
 
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        btnbellmanford = new QPushButton(widget);
+        btnbellmanford = new QPushButton(layoutWidget);
         btnbellmanford->setObjectName(QStringLiteral("btnbellmanford"));
 
         horizontalLayout_3->addWidget(btnbellmanford);
 
-        label = new QLabel(widget);
+        label = new QLabel(layoutWidget);
         label->setObjectName(QStringLiteral("label"));
 
         horizontalLayout_3->addWidget(label);
 
-        cbxstartnode = new QComboBox(widget);
+        cbxstartnode = new QComboBox(layoutWidget);
         cbxstartnode->setObjectName(QStringLiteral("cbxstartnode"));
 
         horizontalLayout_3->addWidget(cbxstartnode);
 
-        label_2 = new QLabel(widget);
+        label_2 = new QLabel(layoutWidget);
         label_2->setObjectName(QStringLiteral("label_2"));
 
         horizontalLayout_3->addWidget(label_2);
 
-        cbxfinalnode = new QComboBox(widget);
+        cbxfinalnode = new QComboBox(layoutWidget);
         cbxfinalnode->setObjectName(QStringLiteral("cbxfinalnode"));
 
         horizontalLayout_3->addWidget(cbxfinalnode);
@@ -125,6 +143,8 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
+        layoutWidget->raise();
+        btndeepsearchcolor->raise();
 
         retranslateUi(GroupBoxOption);
 
@@ -135,6 +155,8 @@ public:
     {
         GroupBoxOption->setWindowTitle(QApplication::translate("GroupBoxOption", "GroupBox", 0));
         GroupBoxOption->setTitle(QApplication::translate("GroupBoxOption", "Algor\303\255tmos", 0));
+        btngeneratetranposed->setText(QApplication::translate("GroupBoxOption", "Transpor", 0));
+        btndeepsearchcolor->setText(QApplication::translate("GroupBoxOption", "Colora\303\247\303\243o", 0));
         btndeepsearch->setText(QApplication::translate("GroupBoxOption", "Busca em profundidade", 0));
         btnbreadhsearch->setText(QApplication::translate("GroupBoxOption", "Busca em largura", 0));
         btnconectivity->setText(QApplication::translate("GroupBoxOption", "Checar conexidade", 0));

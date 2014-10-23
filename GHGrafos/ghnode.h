@@ -21,6 +21,8 @@ public:
     enum SELECTION{NOT_SELECTED=0,SELECTION_IMMINENT,SELECTED,
                    SELECTION_ARROW_IMMINENT};
     enum COLOR{WHITE=0,GRAY,BLACK};
+
+
     explicit GHNode(QObject *parent = 0);
     explicit GHNode(QString name,QObject *parent = 0);
     //GHNode(QImage *imgCurrent);
@@ -100,6 +102,8 @@ public:
     void setNumberChanged(bool changed);
     bool getNumberChanged();
 
+    void setColorIndex(int colorindex);
+    int getColorIndex();
 
 signals:
     
@@ -114,7 +118,7 @@ private:
     int x,y;
     QList <GHEdge*> *arrowlist;
     QString name,value;
-    int timeD,timeF, distance,key;
+    int timeD,timeF, distance,key, colorindex;
     bool numberchanged;
 };
 

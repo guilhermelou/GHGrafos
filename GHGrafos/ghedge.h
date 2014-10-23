@@ -37,6 +37,7 @@ public:
     void drawArrow(QImage *imgview);
     static void drawArrow(GHEdge *arrow, QImage *imgview);
     static void calculateArrow(GHEdge *arrow, QPoint *points);
+
 signals:
     
 public slots:
