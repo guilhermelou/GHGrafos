@@ -367,8 +367,24 @@ QList<GHNode*> GHGrafo::barrier(GHEdge *brokeedge)
     adjacentNodeB->setParent(NULL);
 
 
-
-    q.append(adjacentNodeA);
+    if (adjacentNodeA->isBarrier())
+    {
+        adjacentNodeA->setIsOpen(false);
+        listaux.append(adjacentNodeA);
+    }
+    else
+    {
+        q.append(adjacentNodeA);
+    }
+    if (adjacentNodeB->isBarrier())
+    {
+        adjacentNodeB->setIsOpen(false);
+        listaux.append(adjacentNodeB);
+    }
+    else
+    {
+        q.append(adjacentNodeB);
+    }
 
     while( !q.isEmpty() ){
         GHNode *u = q.first();

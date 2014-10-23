@@ -30,7 +30,7 @@ public:
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
     QHBoxLayout *horizontalLayout_4;
-    QPushButton *btn_barrier;
+    QPushButton *btnbarrier;
     QPushButton *btngeneratetranposed;
     QPushButton *btndeepsearchcolor;
     QHBoxLayout *horizontalLayout;
@@ -61,10 +61,10 @@ public:
         verticalLayout->setContentsMargins(0, 0, 0, 0);
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
-        btn_barrier = new QPushButton(layoutWidget);
-        btn_barrier->setObjectName(QStringLiteral("btn_barrier"));
+        btnbarrier = new QPushButton(layoutWidget);
+        btnbarrier->setObjectName(QStringLiteral("btnbarrier"));
 
-        horizontalLayout_4->addWidget(btn_barrier);
+        horizontalLayout_4->addWidget(btnbarrier);
 
         btngeneratetranposed = new QPushButton(layoutWidget);
         btngeneratetranposed->setObjectName(QStringLiteral("btngeneratetranposed"));
@@ -159,7 +159,7 @@ public:
     {
         GroupBoxOption->setWindowTitle(QApplication::translate("GroupBoxOption", "GroupBox", 0));
         GroupBoxOption->setTitle(QApplication::translate("GroupBoxOption", "Algor\303\255tmos", 0));
-        btn_barrier->setText(QApplication::translate("GroupBoxOption", "Barrier", 0));
+        btnbarrier->setText(QApplication::translate("GroupBoxOption", "Barreira", 0));
         btngeneratetranposed->setText(QApplication::translate("GroupBoxOption", "Transpor", 0));
         btndeepsearchcolor->setText(QApplication::translate("GroupBoxOption", "Colora\303\247\303\243o", 0));
         btndeepsearch->setText(QApplication::translate("GroupBoxOption", "Busca em profundidade", 0));

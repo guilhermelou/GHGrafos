@@ -52,7 +52,7 @@ void ViewMain::createTabWidget()
     connect(grboption,SIGNAL(btndjkstra_clicked()),this,SLOT(djkstra()));
     connect(grboption,SIGNAL(btnbellmanford_clicked()),this,SLOT(bellmanford()));
     connect(grboption,SIGNAL(btngeneratetransposed_clicked()),this,SLOT(generateTransposed()));
-    //connect(grboption,SIGNAL(btnbarrier_clicked()),this,SLOT(checkBarrier()));
+    connect(grboption,SIGNAL(btnbarrier()),this,SLOT(checkBarrier()));
 }
 
 //QTableWidget *ViewMain::getTableWidget2()
@@ -136,12 +136,20 @@ void ViewMain::generateTransposed()
 }
 void ViewMain::checkBarrier()
 {
-    ghgrafo->getGHNodeList()->at(0)->setIsBarrier(true);
-    ghgrafo->getGHNodeList()->at(4)->setIsBarrier(true);
-    ghgrafo->getGHNodeList()->at(8)->setIsBarrier(true);
-    ghgrafo->getGHNodeList()->at(2)->setIsBarrier(true);
+    qDebug()<<"test";
+    ghgrafo->getGHNodeList()->at(0)->setIsBarrier(true);//2
+    qDebug()<<"name: "<<ghgrafo->getGHNodeList()->at(0)->getName();
+    ghgrafo->getGHNodeList()->at(4)->setIsBarrier(true);//5
+    qDebug()<<"name: "<<ghgrafo->getGHNodeList()->at(4)->getName();
+    ghgrafo->getGHNodeList()->at(8)->setIsBarrier(true);//9
+    qDebug()<<"name: "<<ghgrafo->getGHNodeList()->at(8)->getName();
+    ghgrafo->getGHNodeList()->at(2)->setIsBarrier(true);//3
+    qDebug()<<"name: "<<ghgrafo->getGHNodeList()->at(2)->getName();
+    qDebug()<<"nome_init: "<<ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)->getStartNode()->getName();
+    qDebug()<<"nome_end: "<<ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)->getEndNode()->getName();
     foreach(GHNode *nodeaux, ghgrafo->barrier(ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)))
     {
+
         qDebug()<<nodeaux->getName()<<"isBarrier?: "<< nodeaux->isBarrier()<<"isOpen"<<nodeaux->isOpen();
     }
 }
