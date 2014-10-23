@@ -7,6 +7,8 @@ GHNode::GHNode(QObject *parent) :
     arrowlist = new QList <GHEdge*>();
     timeD = timeF = 0;
     nodecolor = GHNode::WHITE;
+    barrier=false;
+    open=true;
 }
 GHNode::GHNode(QString name , QObject * parent) :
     QObject(parent)
@@ -16,6 +18,8 @@ GHNode::GHNode(QString name , QObject * parent) :
     this->name = name;
     timeD = timeF = 0;
     nodecolor = GHNode::WHITE;
+    barrier = false;
+    open = true;
 }
 GHNode::NODETYPE GHNode::nodeType()
 {
@@ -448,4 +452,23 @@ void GHNode::setNumberChanged(bool changed)
 bool GHNode::getNumberChanged()
 {
     return numberchanged;
+}
+bool GHNode::isBarrier()
+{
+    return barrier;
+}
+
+bool GHNode::isOpen()
+{
+    return open;
+}
+
+void GHNode::setIsBarrier(bool isbarrier)
+{
+    this->barrier = isbarrier;
+}
+
+void GHNode::setIsOpen(bool isopen)
+{
+    this->open = isopen;
 }

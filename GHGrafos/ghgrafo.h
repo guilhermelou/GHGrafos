@@ -71,6 +71,8 @@ public:
 
     QStringList getVertexNames();
     QList<GHEdge*> getAllEdgeTimes();
+
+    QList<GHNode *> barrier(GHEdge *brokeedge);
 signals:
     
 public slots:

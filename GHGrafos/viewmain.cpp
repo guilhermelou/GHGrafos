@@ -52,6 +52,7 @@ void ViewMain::createTabWidget()
     connect(grboption,SIGNAL(btndjkstra_clicked()),this,SLOT(djkstra()));
     connect(grboption,SIGNAL(btnbellmanford_clicked()),this,SLOT(bellmanford()));
     connect(grboption,SIGNAL(btngeneratetransposed_clicked()),this,SLOT(generateTransposed()));
+    //connect(grboption,SIGNAL(btnbarrier_clicked()),this,SLOT(checkBarrier()));
 }
 
 //QTableWidget *ViewMain::getTableWidget2()
@@ -133,7 +134,17 @@ void ViewMain::generateTransposed()
 
     tabwidget->setCurrentIndex(3);
 }
-
+void ViewMain::checkBarrier()
+{
+    ghgrafo->getGHNodeList()->at(0)->setIsBarrier(true);
+    ghgrafo->getGHNodeList()->at(4)->setIsBarrier(true);
+    ghgrafo->getGHNodeList()->at(8)->setIsBarrier(true);
+    ghgrafo->getGHNodeList()->at(2)->setIsBarrier(true);
+    foreach(GHNode *nodeaux, ghgrafo->barrier(ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)))
+    {
+        qDebug()<<nodeaux->getName()<<"isBarrier?: "<< nodeaux->isBarrier()<<"isOpen"<<nodeaux->isOpen();
+    }
+}
 void ViewMain::ViewMain::startNodeChanged(const QString &arg1)
 {
 

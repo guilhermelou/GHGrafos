@@ -104,7 +104,10 @@ public:
 
     void setColorIndex(int colorindex);
     int getColorIndex();
-
+    bool isBarrier();
+    bool isOpen();
+    void setIsBarrier(bool isbarrier);
+    void setIsOpen(bool isopen);
 signals:
     
 public slots:
@@ -120,6 +123,9 @@ private:
     QString name,value;
     int timeD,timeF, distance,key, colorindex;
     bool numberchanged;
+    bool barrier;
+    bool open;
+
 };
 
 #endif // GHNode_H

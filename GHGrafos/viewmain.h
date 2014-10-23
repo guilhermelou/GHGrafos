@@ -37,8 +37,9 @@ public:
 //    QImage *getImgCurrentNode();
     void createTabWidget();
     QTableWidget *getTableWidget1();
-   // QTableWidget *getTableWidget2();
+    // QTableWidget *getTableWidget2();
 public slots:
+    void checkBarrier();
     void openNewFile();
 
     void deepsearch();

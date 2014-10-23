@@ -344,6 +344,57 @@ QString GHGrafo::deepSearch(GHNode*firstNode)
     return result;
 
 }
+QList<GHNode*> GHGrafo::barrier(GHEdge *brokeedge)
+{
+    qDebug() << "barrier: ";
+    QList<GHNode*> listaux;
+    foreach (GHNode *node, *GHNodelist) {
+        node->setColor(GHNode::WHITE);
+        node->setDistance(0);
+        node->setParent(NULL);
+        qDebug() << node->getName();
+    }
+
+    QList<GHNode*> q;
+    GHNode *adjacentNodeA = brokeedge->getStartNode();
+    GHNode *adjacentNodeB = brokeedge->getEndNode();
+
+    adjacentNodeA->setColor(GHNode::GRAY);
+    adjacentNodeA->setDistance(0);
+    adjacentNodeA->setParent(NULL);
+    adjacentNodeB->setColor(GHNode::GRAY);
+    adjacentNodeB->setDistance(0);
+    adjacentNodeB->setParent(NULL);
+
+
+
+    q.append(adjacentNodeA);
+
+    while( !q.isEmpty() ){
+        GHNode *u = q.first();
+        q.removeFirst();
+
+        foreach (GHNode *v, u->getAdjacentNodes(u)) {
+            if( v->getColor()==GHNode::WHITE ){
+                v->setColor(GHNode::GRAY);
+                v->setParent(u);
+                v->setDistance(u->getDistance()+1);
+                if (v->isBarrier())
+                {
+                    v->setIsOpen(false);
+                    listaux.append(v);
+                }
+
+                else
+                {
+                    q.append(v);
+                }
+            }
+        }
+        u->setColor(GHNode::BLACK);
+    }
+    return listaux;
+}
 
 QString GHGrafo::breadthSearch(GHNode *firstnode)
 {
@@ -849,5 +900,6 @@ QList<GHEdge *> GHGrafo::getAllEdgeTimes()
     }
     qDebug()<<"sizeeeee"<<arrowlist.size();
 }
+
 
 
