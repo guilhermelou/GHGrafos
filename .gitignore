@@ -31,3 +31,6 @@ GHGrafos.pro.user.*
 *.app
 #Mac Issue
 .DS_Store
+
+#build folder
+build-*/
