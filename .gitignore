@@ -34,4 +34,6 @@ GHGrafos.pro.user.*
 .DS_Store
 
 #build folder
-build-*/
+build-*
+#autosave
+*.autosave
