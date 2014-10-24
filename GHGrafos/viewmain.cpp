@@ -145,6 +145,7 @@ void ViewMain::topologicalSort()
 
 void ViewMain::checkBarrier()
 {
+    qDebug()<<ghgrafo->printAdjacentList();
     qDebug()<<"test";
     ghgrafo->getGHNodeList()->at(0)->setIsBarrier(true);//2
     qDebug()<<"name: "<<ghgrafo->getGHNodeList()->at(0)->getName();
