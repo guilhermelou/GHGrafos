@@ -92,6 +92,7 @@ void GroupBoxOption::setNameNodes(QStringList aux)
     ui->cbxstartnode->addItems(aux);
 }
 
-
-
-
+void GroupBoxOption::on_btntopologicalsort_clicked()
+{
+    emit btntopologicalsort();
+}

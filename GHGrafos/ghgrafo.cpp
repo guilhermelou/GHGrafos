@@ -71,7 +71,6 @@ GHGrafo::GHGrafo(QString path, GHGrafo::GRAFOTYPE type, QObject *parent)
                              ghnode2 = new GHNode(list.at(1));
                           //   qDebug() << "6";
                              this->GHNodelist->append(ghnode2);
-                         //    qDebug() << "7";
                         }
                         connectNodes(ghnode1,ghnode2,list.at(2).toInt());
                     }
@@ -848,6 +847,70 @@ int GHGrafo::searchForColor(GHNode *node, int color)
         }
     }
     return color;
+}
+
+QString GHGrafo::topologicalSort()
+{
+    QList<GHNode*> *list = new QList<GHNode*>(*GHNodelist);
+
+    GHGrafo *ghgrafocopy = new GHGrafo();
+    ghgrafocopy->setGrafoType(GHGrafo::NOT_ORIENTED);
+    ghgrafocopy->setGHNodeList(list);
+    QList<GHEdge*> edgelist = ghgrafocopy->getAllArrows();
+    foreach( GHEdge *edge, edgelist )
+    {
+        edge->getEndNode()->setParent(edge->getStartNode());
+    }
+
+//    qDebug() << list->size();
+//    foreach( GHNode *node, *list )
+//    {
+//        if( node->getParent() == NULL )
+//        {
+//            qDebug() << "null" << node->getName();
+//            qDebug() << node->getName() << " pai NULL";
+//        }
+//        else
+//        {
+//            qDebug() << "not null" << node->getName();
+//            qDebug() << node->getName() << " pai " << node->getParent()->getName();
+//        }
+//    }
+
+    QList<GHNode*> *solution = new QList<GHNode*>();
+
+    while( !list->isEmpty() )
+    {
+        QList<GHNode*> *aux = new QList<GHNode*>();
+        aux->clear();
+        foreach( GHNode *node, *list )
+        {
+            if( node->getParent() == NULL )
+            {
+                solution->append(node);
+                aux->append(node);
+            }
+        }
+        foreach( GHNode *parentnode, *aux )
+        {
+            foreach( GHNode *childnode, GHNode::getAdjacentOrientedNodes(parentnode) )
+            {
+                childnode->setParent(NULL);
+            }
+            list->removeAll(parentnode);
+        }
+    }
+
+    qDebug() << "result: " << "\n";
+    QString straux = "Sequencia: \n";
+    foreach( GHNode *node, *solution )
+    {
+        qDebug() << node->getName() << "\n";
+        straux.append(node->getName());
+        straux.append("\n");
+    }
+
+    return straux;
 }
 
 GHGrafo * GHGrafo::generateTranposedGraph()

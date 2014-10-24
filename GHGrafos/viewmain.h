@@ -39,7 +39,10 @@ public:
     QTableWidget *getTableWidget1();
     // QTableWidget *getTableWidget2();
 public slots:
+    void topologicalSort();
+
     void checkBarrier();
+
     void openNewFile();
 
     void deepsearch();

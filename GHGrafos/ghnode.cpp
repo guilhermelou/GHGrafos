@@ -9,6 +9,7 @@ GHNode::GHNode(QObject *parent) :
     nodecolor = GHNode::WHITE;
     barrier=false;
     open=true;
+    parentnode = NULL;
 }
 GHNode::GHNode(QString name , QObject * parent) :
     QObject(parent)
@@ -20,6 +21,7 @@ GHNode::GHNode(QString name , QObject * parent) :
     nodecolor = GHNode::WHITE;
     barrier = false;
     open = true;
+    parentnode = NULL;
 }
 GHNode::NODETYPE GHNode::nodeType()
 {

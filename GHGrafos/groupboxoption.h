@@ -36,15 +36,17 @@ private slots:
 
     void on_cbxfinalnode_currentIndexChanged(const QString &arg1);
 
-
-
     void on_btndeepsearchcolor_clicked();
 
     void on_btngeneratetranposed_clicked();
 
     void on_btnbarrier_clicked();
 
+    void on_btntopologicalsort_clicked();
+
 signals:
+    void btntopologicalsort();
+
     void btnbarrier();
 
     void btndeepsearch_clicked();

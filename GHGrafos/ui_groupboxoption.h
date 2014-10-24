@@ -29,6 +29,8 @@ class Ui_GroupBoxOption
 public:
     QWidget *layoutWidget;
     QVBoxLayout *verticalLayout;
+    QHBoxLayout *horizontalLayout_5;
+    QPushButton *btntopologicalsort;
     QHBoxLayout *horizontalLayout_4;
     QPushButton *btnbarrier;
     QPushButton *btngeneratetranposed;
@@ -55,10 +57,20 @@ public:
         GroupBoxOption->resize(645, 362);
         layoutWidget = new QWidget(GroupBoxOption);
         layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(2, 20, 641, 120));
+        layoutWidget->setGeometry(QRect(2, 20, 641, 160));
         verticalLayout = new QVBoxLayout(layoutWidget);
         verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
         verticalLayout->setContentsMargins(0, 0, 0, 0);
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
+        btntopologicalsort = new QPushButton(layoutWidget);
+        btntopologicalsort->setObjectName(QStringLiteral("btntopologicalsort"));
+
+        horizontalLayout_5->addWidget(btntopologicalsort);
+
+
+        verticalLayout->addLayout(horizontalLayout_5);
+
         horizontalLayout_4 = new QHBoxLayout();
         horizontalLayout_4->setObjectName(QStringLiteral("horizontalLayout_4"));
         btnbarrier = new QPushButton(layoutWidget);
@@ -149,8 +161,6 @@ public:
 
         verticalLayout->addLayout(horizontalLayout_3);
 
-        layoutWidget->raise();
-        btndeepsearchcolor->raise();
 
         retranslateUi(GroupBoxOption);
 
@@ -161,6 +171,7 @@ public:
     {
         GroupBoxOption->setWindowTitle(QApplication::translate("GroupBoxOption", "GroupBox", 0));
         GroupBoxOption->setTitle(QApplication::translate("GroupBoxOption", "Algor\303\255tmos", 0));
+        btntopologicalsort->setText(QApplication::translate("GroupBoxOption", "Ordena\303\247\303\243o Topol\303\263gica", 0));
         btnbarrier->setText(QApplication::translate("GroupBoxOption", "Barreira", 0));
         btngeneratetranposed->setText(QApplication::translate("GroupBoxOption", "Transpor", 0));
         btndeepsearchcolor->setText(QApplication::translate("GroupBoxOption", "Colora\303\247\303\243o", 0));

@@ -53,6 +53,7 @@ void ViewMain::createTabWidget()
     connect(grboption,SIGNAL(btnbellmanford_clicked()),this,SLOT(bellmanford()));
     connect(grboption,SIGNAL(btngeneratetransposed_clicked()),this,SLOT(generateTransposed()));
     connect(grboption,SIGNAL(btnbarrier()),this,SLOT(checkBarrier()));
+    connect(grboption,SIGNAL(btntopologicalsort()),this,SLOT(topologicalSort()));
 }
 
 //QTableWidget *ViewMain::getTableWidget2()
@@ -134,6 +135,14 @@ void ViewMain::generateTransposed()
 
     tabwidget->setCurrentIndex(3);
 }
+
+void ViewMain::topologicalSort()
+{
+    lblresult->setText(ghgrafo->topologicalSort());
+
+    tabwidget->setCurrentIndex(3);
+}
+
 void ViewMain::checkBarrier()
 {
     qDebug()<<"test";
@@ -147,11 +156,33 @@ void ViewMain::checkBarrier()
     qDebug()<<"name: "<<ghgrafo->getGHNodeList()->at(2)->getName();
     qDebug()<<"nome_init: "<<ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)->getStartNode()->getName();
     qDebug()<<"nome_end: "<<ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)->getEndNode()->getName();
+
+    QString straux;
+    straux = "Nós registros: \n";
+    straux.append(ghgrafo->getGHNodeList()->at(0)->getName());
+    straux.append("\n");
+    straux.append(ghgrafo->getGHNodeList()->at(4)->getName());
+    straux.append("\n");
+    straux.append(ghgrafo->getGHNodeList()->at(8)->getName());
+    straux.append("\n");
+    straux.append(ghgrafo->getGHNodeList()->at(2)->getName());
+    straux.append("\n");
+    straux.append("\n");
+
+    straux.append("Aresta rompida: " + (ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)->getStartNode()->getName())
+                               + " " + (ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)->getEndNode()->getName()));
+
+    straux.append("\n");
+
     foreach(GHNode *nodeaux, ghgrafo->barrier(ghgrafo->getGHNodeList()->at(3)->getArrowsThatStartOnIt().at(0)))
     {
-
         qDebug()<<nodeaux->getName()<<"isBarrier?: "<< nodeaux->isBarrier()<<"isOpen"<<nodeaux->isOpen();
+        straux.append(nodeaux->getName() + " isBarrier?: " + nodeaux->isBarrier() + "isOpen: " + nodeaux->isOpen());
     }
+
+    lblresult->setText(straux);
+
+    tabwidget->setCurrentIndex(3);
 }
 void ViewMain::ViewMain::startNodeChanged(const QString &arg1)
 {

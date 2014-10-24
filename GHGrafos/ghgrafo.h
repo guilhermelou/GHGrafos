@@ -73,6 +73,9 @@ public:
     QList<GHEdge*> getAllEdgeTimes();
 
     QList<GHNode *> barrier(GHEdge *brokeedge);
+
+    QString topologicalSort();
+
 signals:
     
 public slots:
