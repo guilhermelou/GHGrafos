@@ -29,3 +29,5 @@ GHGrafos.pro.user.*
 *.exe
 *.out
 *.app
+#Mac Issue
+.DS_Store
